@@ -1,0 +1,15 @@
+parameters:
+
+services:
+
+    session.handler.pdo:
+        class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        public:    false
+        arguments:
+            - "mysql:dbname=%database_name%"
+            - { db_table: naroga_session, db_username: %database_user%, db_password: %database_password% }
+
+    app.form.registration:
+        class: Naroga\AccountsBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
